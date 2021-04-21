@@ -19,7 +19,7 @@ namespace ImportacionExcel
         private void BotonCrearBorrado_Click(object sender, EventArgs e)
         {
             //CrearBorrado crear = new CrearBorrado();
-            ElegirModelo crear = new ElegirModelo();
+            AsociarPrimaria crear = new AsociarPrimaria();
 
             Hide();
             crear.ShowDialog();

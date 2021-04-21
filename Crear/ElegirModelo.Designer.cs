@@ -98,6 +98,7 @@ namespace ImportacionExcel.Crear
             this.ComboBBDD.TabIndex = 0;
             this.ComboBBDD.SelectedIndexChanged += new System.EventHandler(this.ComboBBDD_SelectedIndexChanged);
             this.ComboBBDD.TextUpdate += new System.EventHandler(this.ComboBBDD_TextUpdate);
+            this.ComboBBDD.Enter += new System.EventHandler(this.ComboBBDD_Enter);
             // 
             // ElegirModelo
             // 
@@ -107,7 +108,6 @@ namespace ImportacionExcel.Crear
             this.Controls.Add(this.groupBox3);
             this.Name = "ElegirModelo";
             this.Text = "ElegirModelo";
-            this.Shown += new System.EventHandler(this.ElegirModelo_Shown);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
             this.Controls.SetChildIndex(this.groupBox3, 0);

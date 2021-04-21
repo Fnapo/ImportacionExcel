@@ -11,9 +11,6 @@ namespace ImportacionExcel.Crear
 {
     public partial class ElegirModelo : FicheroNombre
     {
-        protected static Color fondoActivo = Color.SteelBlue;
-        protected static Color fondoDesactivo = Color.Gray;
-
         public ElegirModelo()
         {
             InitializeComponent();
@@ -102,9 +99,6 @@ namespace ImportacionExcel.Crear
 
             try
             {
-                conexion.Open();
-                conexion.Close();
-
                 MySqlCommand comando = new MySqlCommand(cadenaConsulta, conexion);
                 MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
                 DataSet resultado = new DataSet();
@@ -114,20 +108,13 @@ namespace ImportacionExcel.Crear
                 {
                     combo.Items.Add(fila[campo]);
                 }
+                conexion.Close();
             }
             catch (MySqlException error)
             {
                 MessageBox.Show($"Error de Conexión: {cadenaConexion}.\nCon el mensaje: {error.Message}");
                 Close();
             }
-        }
-        private void ElegirModelo_Shown(object sender, EventArgs e)
-        {
-            string cadenaConexion = "SERVER=localhost;DATABASE=;UID=root;PASSWORD=",
-                cadenaVerBases = "SHOW DATABASES";
-            //cadenaVerCampos = "SHOW FIELDS FROM autores;";
-
-            LlenarComboSQL(ComboBBDD, cadenaConexion, cadenaVerBases);
         }
 
         private void BotonBBDD_Click(object sender, EventArgs e)
@@ -146,6 +133,18 @@ namespace ImportacionExcel.Crear
         {
             ComboTabla.Enabled = BotonTabla.Enabled = false;
             CambiarColorBotones();
+        }
+
+        private void ComboBBDD_Enter(object sender, EventArgs e)
+        {
+            if (ComboBBDD.Items.Count == 0)
+            {
+                string cadenaConexion = "SERVER=localhost;DATABASE=;UID=root;PASSWORD=",
+                    cadenaVerBases = "SHOW DATABASES";
+                //cadenaVerCampos = "SHOW FIELDS FROM autores;";
+
+                LlenarComboSQL(ComboBBDD, cadenaConexion, cadenaVerBases);
+            }
         }
     }
 }

@@ -10,9 +10,14 @@ namespace ImportacionExcel.Crear
 {
     public partial class BuscarFichero : Form
     {
+        protected static Color fondoActivo = Color.SteelBlue;
+        protected static Color fondoDesactivo = Color.Gray;
+
         public BuscarFichero()
         {
             InitializeComponent();
+            botonBuscar.BackColor = fondoActivo;
+            botonBuscar.ForeColor = Color.White;
         }
 
         protected void BotonBuscar_Click(object sender, EventArgs e)
@@ -27,6 +32,8 @@ namespace ImportacionExcel.Crear
             {
                 cajaTexto.Text = nombreFichero;
                 _ = MessageBox.Show("Fichero encontrado correctamente ....");
+                botonBuscar.BackColor = fondoDesactivo;
+                botonBuscar.Enabled = false;
             }
             else
             {
